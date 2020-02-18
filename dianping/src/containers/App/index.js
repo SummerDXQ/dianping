@@ -3,6 +3,7 @@ import ErrorToast from '../../components/ErroeToast/index'
 import { getError, actions as appActions} from '../../redux/modules/app';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
+import Home from '../Home/Home'
 
  
 class App extends Component{ 
@@ -10,7 +11,7 @@ class App extends Component{
         const {error,appActions} = this.props
         return(
             <div>
-                <div>APP Component</div>
+                <Home></Home>
                 {error? <ErrorToast msg={error} clearError={appActions.clearError}/>:null}
             </div>
         )
@@ -24,7 +25,7 @@ const mapStateToProps = (state,props) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return{
-        appAction:bindActionCreators(appActions,dispatch)  //使用时不需要调用dispatch发送action
+        appAction:bindActionCreators(appActions,dispatch) 
     }
 }
 
