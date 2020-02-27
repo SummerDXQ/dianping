@@ -10,7 +10,7 @@ class App extends Component{
     render(){
         const {error,appActions} = this.props
         return(
-            <div>
+            <div style={{overflow:"hidden"}}>
                 <Home></Home>
                 {error? <ErrorToast msg={error} clearError={appActions.clearError}/>:null}
             </div>
