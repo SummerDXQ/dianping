@@ -14,7 +14,7 @@ const dataSource = [
         src: "https://www.dpfile.com/sc/eleconfig/20160126203337jiudian.png"
       },
       {
-        name: "Entertainment",
+        name: "Fun",
         src: "https://www.dpfile.com/sc/eleconfig/20160126202841xiuxianyule.png"
       },
       {
@@ -34,7 +34,7 @@ const dataSource = [
         src: "https://www.dpfile.com/sc/eleconfig/20160126202946liren.png"
       },
       {
-        name: "Fun",
+        name: "Singing",
         src: "https://www.dpfile.com/sc/eleconfig/20160126203542ktv.png"
       },
       {
@@ -76,11 +76,11 @@ const dataSource = [
         src: "https://www.dpfile.com/sc/eleconfig/20160126203812daojia.png"
       },
       {
-        name: "Decoration",
+        name: "Paint",
         src: "https://www.dpfile.com/sc/eleconfig/20161213162031zhuangxiu.png"
       },
       {
-        name: "Learning",
+        name: "Learn",
         src: "https://www.dpfile.com/gp/cms/1455525720807.png"
       },
       {
@@ -119,7 +119,7 @@ const dataSource = [
         src: "https://www.dpfile.com/sc/eleconfig/20160316143316shoushen.png"
       },
       {
-        name: "Photograph",
+        name: "Photo",
         src: "https://www.dpfile.com/sc/eleconfig/20160316143612qinzisheying.png"
       },
       {
