@@ -70,19 +70,20 @@ class LikeList extends Component{
     constructor(props){
         super(props);
         this.myRef = React.createRef();
-        this.state={
-            data:dataSource,
-            loadTimes:1
-        }
+        // this.state={
+        //     data:dataSource,
+        //     loadTimes:1
+        // }
         this.removeListener = false;
     }
 
     componentDidMount(){
-        document.addEventListener("scroll",this.handleScroll)
+        document.addEventListener("scroll",this.handleScroll);
+        this.props.fetchData();
     }
 
     componentDidUpdate(){
-        if(this.state.loadTimes >=3 && !this.removeListener){
+        if(this.props.pageCount >=3 && !this.removeListener){
             document.removeEventListener("scroll",this.handleScroll)
             this.removeListener = true;
         }
@@ -100,18 +101,19 @@ class LikeList extends Component{
         const likeListTop = this.myRef.current.offsetTop;
         const likeListHeight = this.myRef.current.offsetHeight;
         if(scrollTop >= likeListHeight + likeListTop - screenHeight){
-            const newData = this.state.data.concat(dataSource)
-            const newLoadTimes = this.state.loadTimes + 1;
-            setTimeout(()=>{
-                this.setState({
-                    loadTimes:newLoadTimes,
-                    data:newData
-                })
-            },5000)
+          this.props.fetchData();
+            // const newData = this.state.data.concat(dataSource)
+            // const newLoadTimes = this.state.loadTimes + 1;
+            // setTimeout(()=>{
+            //     this.setState({
+            //         loadTimes:newLoadTimes,
+            //         data:newData
+            //     })
+            // },5000)
         }
     }
     render(){
-      const {data,loadTimes} = this.state;
+      const {data,pageCount} = this.props;
         return(
             <a ref={this.myRef} className="likeList">
                 <div className="likeList__header">You May Like</div>
@@ -123,7 +125,7 @@ class LikeList extends Component{
                     }
                 </div>
                 {
-                    loadTimes < 3 ? (<Loading/>):(<a className="likeList__viewAll">Search More</a>)
+                    pageCount < 3 ? (<Loading/>):(<a className="likeList__viewAll">Search More</a>)
                 }
             </a>
         )

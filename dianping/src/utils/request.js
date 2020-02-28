@@ -4,11 +4,16 @@ const headers = new Headers({
 })
 
 function get(url){
+    console.log('传进来的URL为'+url)
     return fetch(url,{
         method:'GET',
         headers:headers
     }).then(response=>{
-        handleResponse(url,response)
+        console.log('结果是'+response)
+        console.dir(response)
+        // console.log(response.json())
+        // handleResponse(url,response)
+        return Promise.resolve(response.json())
     }).catch(err=>{
         console.error(`Request Failed. URL = ${url}. Message=${err}`)
         //haven't reach server
