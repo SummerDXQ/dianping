@@ -1,14 +1,14 @@
 import {combineReducers} from 'redux'
-import entities from './entities/index'
+// import entities from './entities/index'
 import home from './home'
-import detail from './detail'
-import app from './app'
+// import detail from './detail'
+// import app from './app'
 
 const rootReducer = combineReducers({
-    entities,
+    // entities,
     home,
-    detail,
-    app
+    // detail,
+    // app
 })
 
 export default rootReducer;

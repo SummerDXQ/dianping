@@ -11,16 +11,17 @@ import {actions,getLikes,getDiscounts,getPageCountOfLikes} from '../../redux/mod
 
 class Home extends Component{
     componentDidMount(){
-        // console.log(this.props.homeActions);
-        // console.log(this.props.discount)
-        this.props.homeActions.loadDiscounts();
+        console.log('在componentDidMount初始化')
+        this.props.Discounts();
+        this.props.loadLikes();
     }
 
     fetchMoreLikes = () =>{
-        this.props.homeActions.loadLikes()
+        this.props.loadLikes()
     }
 
     render(){
+        console.log('-------------home render-----------------')
         const {likes,discount,pageCount} = this.props
         return(
             <div>
@@ -28,8 +29,8 @@ class Home extends Component{
                 <Banner/>
                 <Category/>
                 <Headline/>
-                <Discount data={discount}/>
-                {/* <LikeList data={likes} pageCount={pageCount} fetchData={this.fetchMoreLikes}/> */}
+                {discount?<Discount data={discount}/>:null}
+                <LikeList data={likes} pageCount={pageCount} fetchData={this.fetchMoreLikes}/>
             </div>
         )
     }
@@ -37,16 +38,20 @@ class Home extends Component{
 
 
 const mapStateToProps = (state,props) =>{
+    console.log('-----------mapStateToProps-----------')
+    console.log(getDiscounts(state))
     return {
         likes:getLikes(state),
         discount:getDiscounts(state),
-        pageCount:getPageCountOfLikes(state)
+        // pageCount:getPageCountOfLikes(state)
     }
 }
 
 const mapDispatchToProps = dispatch =>{
     return{
-        homeActions:bindActionCreators(actions,dispatch)
+        // homeActions:bindActionCreators(actions,dispatch)
+        Discounts: () => dispatch(actions.loadDiscounts()),
+        loadLikes: () => dispatch(actions.loadLikes()),
     }
 }
 

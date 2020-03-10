@@ -4,8 +4,8 @@ import "./style.css"
 class Discount extends Component {
   render() {
     const {data} = this.props;
-    console.log('数据');
-    console.log(data);
+    console.log('-----------discount组件--------------')
+    console.log(data)
     return (
       <div className="discount">
         <a className="discount__header">
