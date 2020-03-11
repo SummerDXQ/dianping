@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import Home from '../Home/Home'
 import {BrowserRouter as Router, Route,Switch} from 'react-router-dom'
+import ProductDetail from '../ProductDetail'
 
  
 class App extends Component{ 
@@ -15,6 +16,7 @@ class App extends Component{
                 <Router>
                     <Switch>
                         <Route path="/" component={Home}/>
+                        <Route path="/detail/:id" component={ProductDetail}/>
                     </Switch>
                 </Router>
                 {error? <ErrorToast msg={error} clearError={appActions.clearError}/>:null}
