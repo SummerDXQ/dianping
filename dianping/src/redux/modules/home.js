@@ -1,16 +1,16 @@
 // import {get} from '../../utils/request'
 // import url from '../../utils/url'
 import {combineReducers} from 'redux'
-import axios from 'axios'
+// import axios from 'axios'
 import {reqDiscounts,reqLikes} from '../../utils/index'
 
 // consts
-export const params = {
-    PATH_LIKES:'likes',
-    PATH_DISCOUNTS:'discounts',
-    PAGE_SIZE_LIKES:5,
-    PAGE_SIZE_DISCOUNTS:3
-}
+// export const params = {
+//     PATH_LIKES:'likes',
+//     PATH_DISCOUNTS:'discounts',
+//     PAGE_SIZE_LIKES:5,
+//     PAGE_SIZE_DISCOUNTS:3
+// }
 
 // action type
 export const types = {
@@ -38,10 +38,15 @@ const initialState = {
 // action creator
 export const actions={
     loadLikes:()=>{
+        initialState.likes.pageCount++;
+        var pageNo = initialState.likes.pageCount
+        console.log(pageNo)
         return (dispatch,getState)=>{
             dispatch(fetchLikesRequest());
-            reqLikes().then(res=>{
+            reqLikes(pageNo).then(res=>{
                 dispatch(fetchLikesSuccess(res.data));
+            }).catch(err=>{
+                dispatch(fetchLikesFailure(err));
             })
         }
     },
@@ -50,6 +55,8 @@ export const actions={
             dispatch(fetchDiscountsRequest())
             reqDiscounts().then(res=>{
                 dispatch(fetchDiscountsSuccess(res.data));
+            }).catch(err=>{
+                dispatch(fetchDiscountsFailure(err));
             })
         }
     }
@@ -96,7 +103,7 @@ const likes = (state=initialState.likes,action) =>{
                 ...state,
                 isFetching:false,
                 pageCount:state.pageCount+1,
-                products:action.value 
+                products:action.value
             }
         case types.FETCH_LIKES_FAILURE:
             return {
@@ -144,6 +151,5 @@ export const getDiscounts = state =>{
 }
 
 export const getPageCountOfLikes = state =>{
-    
-    // return state.home.likes.pageCount
+    return state.home.likes.pageCount
 }

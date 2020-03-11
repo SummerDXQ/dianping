@@ -11,8 +11,9 @@ class LikeList extends Component{
     }
 
     componentDidMount(){
+        console.log('LikeList componentDidMount')
         document.addEventListener("scroll",this.handleScroll);
-        this.props.fetchData();
+        // this.props.fetchData();
     }
 
     componentDidUpdate(){
@@ -28,19 +29,28 @@ class LikeList extends Component{
         }
     }
 
-    // handleScroll = ()=>{
-    //     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-    //     const screenHeight = document.documentElement.clientHeight;
-    //     const likeListTop = this.myRef.current.offsetTop;
-    //     const likeListHeight = this.myRef.current.offsetHeight;
-    //     if(scrollTop >= likeListHeight + likeListTop - screenHeight){
-    //       this.props.fetchData();
-    //     }
-    // }
+    handleScroll = ()=>{
+        console.log('----------handleScroll-----------')
+        // 浏览器卷去部分高度
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+        // 浏览器窗口高度 
+        const screenHeight = document.documentElement.clientHeight;
+        const likeListTop = this.myRef.current.offsetTop;
+        const likeListHeight = this.myRef.current.offsetHeight;
+        console.log('浏览器窗口高度'+screenHeight)
+        console.log('like距离顶部的高度'+likeListTop) 
+        console.log('like的高度'+likeListHeight)
+        console.log('滚进去的高度'+scrollTop)
+        console.log('底部的距离',likeListHeight + likeListTop - screenHeight)
+        if(scrollTop >= likeListHeight + likeListTop - screenHeight){
+            console.log('load数据')
+            this.props.fetchData();
+        }
+    }
     render(){
       const {data,pageCount} = this.props;
         return(
-            <a ref={this.myRef} className="likeList">
+            <div ref={this.myRef} className="likeList">
                 <div className="likeList__header">You May Like</div>
                 <div className="likeList__list">
                     {
@@ -52,7 +62,7 @@ class LikeList extends Component{
                 {
                     pageCount < 3 ? (<Loading/>):(<a className="likeList__viewAll">Search More</a>)
                 }
-            </a>
+            </div>
         )
     }
 }

@@ -2,7 +2,7 @@
   {
     "id": "p-100",
     "shopIds": ["s-100"],
-    "shop": "泫舞舞蹈俱乐部",
+    "shop": "W Dance Club",
     "tag": "免预约",
     "product": "泫舞舞蹈俱乐部",
     "currentPrice": 1,
@@ -12,7 +12,7 @@
   {
     "id": "p-101",
     "shopIds": ["s-101"],
-    "shop": "忍·寿司",
+    "shop": "Suchi Hub",
     "tag": "免预约",
     "product": "忍·寿司",
     "currentPrice": 1,
@@ -22,7 +22,7 @@
   {
     "id": "p-102",
     "shopIds": ["s-102"],
-    "shop": "关忠动物医院",
+    "shop": "Pet House",
     "tag": "免预约",
     "product": "关忠动物医院",
     "currentPrice": 1,

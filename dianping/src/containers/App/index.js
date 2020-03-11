@@ -4,14 +4,19 @@ import { getError, actions as appActions} from '../../redux/modules/app';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import Home from '../Home/Home'
+import {BrowserRouter as Router, Route,Switch} from 'react-router-dom'
 
  
 class App extends Component{ 
     render(){
         const {error,appActions} = this.props
         return(
-            <div style={{overflow:"hidden"}}>
-                <Home></Home>
+            <div className="App">
+                <Router>
+                    <Switch>
+                        <Route path="/" component={Home}/>
+                    </Switch>
+                </Router>
                 {error? <ErrorToast msg={error} clearError={appActions.clearError}/>:null}
             </div>
         )

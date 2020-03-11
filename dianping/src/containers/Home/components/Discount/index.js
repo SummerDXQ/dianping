@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import "./style.css"
+import { Link } from "react-router-dom";
 
 class Discount extends Component {
   render() {
     const {data} = this.props;
-    console.log('-----------discount组件--------------')
-    console.log(data)
+    // console.log('-----------discount组件--------------')
+    // console.log(data)
     return (
       <div className="discount">
         <a className="discount__header">
@@ -15,9 +16,8 @@ class Discount extends Component {
         </a>
         <div className="discount__content">
           {data.map((item, index) => {
-            console.log(item)
             return (
-              <a key={item.id} className="discount__item">
+              <Link to={`/detail/${item.id}`} key={item.id} className="discount__item">
                 <div className="discount__itemPic">
                   <img width="100%" height="100%" src={item.picture} />
                 </div>
@@ -28,7 +28,7 @@ class Discount extends Component {
                   </ins>
                   <del className="discount__itemOldPrice">{item.oldPrice}</del>
                 </div>
-              </a>
+              </Link>
             );
           })}
         </div>

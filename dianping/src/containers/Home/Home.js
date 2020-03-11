@@ -12,16 +12,16 @@ import {actions,getLikes,getDiscounts,getPageCountOfLikes} from '../../redux/mod
 class Home extends Component{
     componentDidMount(){
         console.log('在componentDidMount初始化')
-        this.props.Discounts();
-        this.props.loadLikes();
+        this.props.homeActions.loadDiscounts();
+        this.props.homeActions.loadLikes();
     }
 
     fetchMoreLikes = () =>{
-        this.props.loadLikes()
+        this.props.homeActions.loadLikes()
     }
 
     render(){
-        console.log('-------------home render-----------------')
+        // console.log('-------------home render-----------------')
         const {likes,discount,pageCount} = this.props
         return(
             <div>
@@ -38,20 +38,16 @@ class Home extends Component{
 
 
 const mapStateToProps = (state,props) =>{
-    console.log('-----------mapStateToProps-----------')
-    console.log(getDiscounts(state))
     return {
         likes:getLikes(state),
         discount:getDiscounts(state),
-        // pageCount:getPageCountOfLikes(state)
+        pageCount:getPageCountOfLikes(state)
     }
 }
 
 const mapDispatchToProps = dispatch =>{
     return{
-        // homeActions:bindActionCreators(actions,dispatch)
-        Discounts: () => dispatch(actions.loadDiscounts()),
-        loadLikes: () => dispatch(actions.loadLikes()),
+        homeActions:bindActionCreators(actions,dispatch)
     }
 }
 
