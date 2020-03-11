@@ -5,17 +5,18 @@ import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import Home from '../Home/Home'
 import {BrowserRouter as Router, Route,Switch} from 'react-router-dom'
-import ProductDetail from '../ProductDetail'
+import ProductDetail from '../ProductDetail/index'
 
  
 class App extends Component{ 
     render(){
+        console.log('APP')
         const {error,appActions} = this.props
         return(
             <div className="App">
                 <Router>
                     <Switch>
-                        <Route path="/" component={Home}/>
+                        <Route exact path="/" component={Home}/>
                         <Route path="/detail/:id" component={ProductDetail}/>
                     </Switch>
                 </Router>
