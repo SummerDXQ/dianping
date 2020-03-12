@@ -1,12 +1,12 @@
 {
-  "id": "p-4",
+  "id": "p-9",
   "shopIds": ["s-10","s-11","s-12"],
   "nearestShop": "s-10",
-  "shop": "Yoshinoya",
+  "shop": "Coconut Dessert",
   "tag": "免预约",
   "picture": "https://p0.meituan.net/deal/63a28065fa6f3a7e88271d474e1a721d32912.jpg%40180w_180h_1e_1c_1l_80q%7Cwatermark%3D0",
   "product": "「3店通用」百香果（冷饮）1扎",
-  "description":"Only $19.9！Worth $48，Free WiFi。",
+  "description": "Only $19.9！Worth $48，Free WiFi。",
   "currentPrice": 19.9,
   "oldPrice": 48,
   "saleDesc": "已售6034",
@@ -20,5 +20,5 @@
 "star": 40,
   "address": "105 Batman Street, West Melbourne, VIC",
   "phone": "01069614833",
-  "distance":"4km"
+  "distance":"5km"
 }

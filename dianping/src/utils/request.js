@@ -1,62 +1,25 @@
 import axios from 'axios'
 
-export default function ajax(url,data={},type="GET"){
-    if(type==="GET"){
-        return axios.get(url,{
-            params:data
+export default function ajax(url,data={},type='GET'){
+    // 统一处理异常(在外层包一个promise对象，而不是直接axios的promise，且请求失败时不reject，而是显示错误提示)
+    return new Promise((resolve,reject)=>{
+        let promise;
+        // 1.执行异步ajax请求
+        if(type=='GET'){
+            promise = axios.get(url,{
+                params:data
+            })
+        }else{
+            promise = axios.post(url,data)
+        }
+        // 2.如果成功了，调用resolve(value)
+        promise.then(response=>{
+            resolve(response)
         })
-    }else{
-        return axios.post(url,data)
-    }
+        // 3.如果失败了，不调用reject(reason)，不然会进入catch，所以只提示异常信息
+        .catch(error=>{
+            alert(error)
+        })
+    })
+    
 }
-
-
-ajax('/mock/products/discounts.json').then()
-// const headers = new Headers({
-//     'Accept':'application/json',
-//     'Content-Type':'application/json'
-// })
-
-// function get(url){
-//     // console.log('传进来的URL为'+url)
-//     return fetch(url,{
-//         method:'GET',
-//         headers:headers
-//     }).then(response=>{
-//         // console.log('结果是'+response)
-//         // console.dir(response)
-//         // console.log(response.json())
-//         handleResponse(url,response)
-//         // return response.json()
-//         // return Promise.resolve(response.json()) 
-//     }).catch(err=>{
-//         console.error(`Request Failed. URL = ${url}. Message=${err}`)
-//         //haven't reach server
-//         return Promise.reject({erro:{message:'Request Failed'}})
-//     })
-// }
-
-// function post(url,data){
-//     return fetch(url,{
-//         method:'POST',
-//         headers:headers,
-//         body:data
-//     }).then(response=>{
-//         handleResponse(url,response)
-//     }).catch(err=>{
-//         console.error(`Request Failed. URL = ${url}. Message=${err}`)
-//         // 这里还没到服务器端
-//         return Promise.reject({erro:{message:'Request Failed'}})
-//     })
-// }
-
-// function handleResponse(url,response){
-//     if(response.status===200){
-//         return response.json();
-//     }else{
-//         console.error(`Request Failed. URL = ${url}`)
-//         return Promise.reject({erro:{message:'Request Failed due to server error'}})
-//     }
-// }
-
-// export {get,post}

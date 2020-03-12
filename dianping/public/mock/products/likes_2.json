@@ -57,7 +57,7 @@
   {
     "id": "p-6",
     "shopIds": ["s-1","s-1","s-1"],
-    "shop": "182c Dessert City",
+    "shop": "China Bar Docklands",
     "tag": "Exclusive",
     "picture": "https://p0.meituan.net/deal/e6864ed9ce87966af11d922d5ef7350532676.jpg.webp@180w_180h_1e_1c_1l_80q|watermark=0",
     "product": "ETA.37mins(429m)",
@@ -68,7 +68,7 @@
   {
     "id": "p-7",
     "shopIds": ["s-2"],
-    "shop": "Yabby House",
+    "shop": "Hainan Chicken",
     "tag": "Exclusive",
     "picture": "https://p0.meituan.net/deal/4d32b2d9704fda15aeb5b4dc1d4852e2328759.jpg%40180w_180h_1e_1c_1l_80q%7Cwatermark%3D0",
     "product": "ETA.44mins(749m)",
@@ -79,7 +79,7 @@
   {
     "id": "p-8",
     "shopIds": ["s-3","s-3"],
-    "shop": "Salud Yogurt",
+    "shop": "Ha Ha Tea",
     "tag": "Exclusive",
     "picture": "https://p0.meituan.net/deal/b7935e03809c771e42dfa20784ca6e5228827.jpg.webp@180w_180h_1e_1c_1l_80q|watermark=0",
     "product": "ETA.43mins(806m)",
@@ -90,7 +90,7 @@
   {
     "id": "p-9",
     "shopIds": ["s-4"],
-    "shop": "Yoshinoya",
+    "shop": "Coconut Dessert",
     "tag": "Exclusive",
     "picture": "https://p0.meituan.net/deal/63a28065fa6f3a7e88271d474e1a721d32912.jpg%40180w_180h_1e_1c_1l_80q%7Cwatermark%3D0",
     "product": "ETA.29mins(882m)",
@@ -101,7 +101,7 @@
   {
     "id": "p-10",
     "shopIds": ["s-5"],
-    "shop": "Liu Food Court",
+    "shop": "Subway (King Street)",
     "tag": "Exclusive",
     "picture": "https://p1.meituan.net/deal/a5d9800b5879d596100bfa40ca631396114262.jpg.webp@180w_180h_1e_1c_1l_80q|watermark=0",
     "product": "ETA.41mins(935m)",

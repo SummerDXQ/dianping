@@ -1,16 +1,5 @@
-// import {get} from '../../utils/request'
-// import url from '../../utils/url'
 import {combineReducers} from 'redux'
-// import axios from 'axios'
 import {reqDiscounts,reqLikes} from '../../utils/index'
-
-// consts
-// export const params = {
-//     PATH_LIKES:'likes',
-//     PATH_DISCOUNTS:'discounts',
-//     PAGE_SIZE_LIKES:5,
-//     PAGE_SIZE_DISCOUNTS:3
-// }
 
 // action type
 export const types = {
@@ -40,24 +29,17 @@ export const actions={
     loadLikes:()=>{
         initialState.likes.pageCount++;
         var pageNo = initialState.likes.pageCount
-        console.log(pageNo)
-        return (dispatch,getState)=>{
+        return async (dispatch,getState)=>{
             dispatch(fetchLikesRequest());
-            reqLikes(pageNo).then(res=>{
-                dispatch(fetchLikesSuccess(res.data));
-            }).catch(err=>{
-                dispatch(fetchLikesFailure(err));
-            })
+            const res = await reqLikes(pageNo)
+            dispatch(fetchLikesSuccess(res.data));
         }
     },
     loadDiscounts:()=>{
-        return(dispatch,getState)=>{
+        return async (dispatch,getState)=>{
             dispatch(fetchDiscountsRequest())
-            reqDiscounts().then(res=>{
-                dispatch(fetchDiscountsSuccess(res.data));
-            }).catch(err=>{
-                dispatch(fetchDiscountsFailure(err));
-            })
+            const res = await reqDiscounts()
+            dispatch(fetchDiscountsSuccess(res.data));
         }
     }
 }
@@ -71,10 +53,10 @@ const fetchLikesSuccess = (value) => ({
     value 
 })
 
-const fetchLikesFailure = (reason) => ({
-    type:types.FETCH_LIKES_FAILURE,
-    reason
-})
+// const fetchLikesFailure = (reason) => ({
+//     type:types.FETCH_LIKES_FAILURE,
+//     reason
+// })
 
 const fetchDiscountsRequest = () => ({
     type:types.FETCH_DISCOUNTS_REQUEST
@@ -85,10 +67,10 @@ const fetchDiscountsSuccess = (value) => ({
     value 
 })
 
-const fetchDiscountsFailure = (reason) => ({
-    type:types.FETCH_DISCOUNTS_FAILURE,
-    reason
-})
+// const fetchDiscountsFailure = (reason) => ({
+//     type:types.FETCH_DISCOUNTS_FAILURE,
+//     reason
+// })
 
 // reducer
 const likes = (state=initialState.likes,action) =>{
