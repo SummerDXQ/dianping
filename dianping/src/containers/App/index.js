@@ -7,6 +7,7 @@ import Home from '../Home/Home'
 import {BrowserRouter as Router, Route,Switch} from 'react-router-dom'
 import ProductDetail from '../ProductDetail/index'
 import Search from "../Search";
+import SearchResult from '../SearchResult'
  
 class App extends Component{ 
     render(){
@@ -19,6 +20,7 @@ class App extends Component{
                         <Route exact path="/" component={Home}/>
                         <Route path="/search" component={Search} />
                         <Route path="/detail/:id" component={ProductDetail}/>
+                        <Route path="/search_result" component={SearchResult}/>
                     </Switch>
                 </Router>
                 {error? <ErrorToast msg={error} clearError={appActions.clearError}/>:null}

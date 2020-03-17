@@ -45,6 +45,7 @@ class Search extends Component {
         setInputText(item.keyword||item)
         addHistoryKeyword(item.keyword||item)
         // 跳转到结果页
+        this.props.history.push('/search_result')
     }
     hancleClearHistory=()=>{
         const {clearHistoryKeywords} = this.props.searchActions;
