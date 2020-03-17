@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SearchHeader from "./components/SearchHeader"
 import KeywordBox from "./components/KeywordBox"
 import Banner from "../../components/Banner"
+import ShopList from "./components/ShopList"
 
 class SearchResult extends Component {
   render() {
@@ -10,6 +11,7 @@ class SearchResult extends Component {
         <SearchHeader onBack={this.handleBack} onSearch={this.handleSearch}/>
         <KeywordBox text="text"/>
         <Banner dark />
+        <ShopList/>
       </div>
     );
   }
