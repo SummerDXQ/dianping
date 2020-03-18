@@ -15,20 +15,16 @@ import {
 class Search extends Component {
     componentDidMount(){
         const {loadPopularKeywords} = this.props.searchActions;
-        console.log('----------componentDidMount------------')
         loadPopularKeywords()
     }
 
     handleChangeInput = (text) =>{
         const {setInputText,loadRelatedKeywords} = this.props.searchActions;
         setInputText(text)
-        console.log('--------handleChangeInput---------')
-        console.log(text)
         loadRelatedKeywords(text)
     }
 
     handleClear = ()=>{
-        console.log('handleClear')
         const {clearInputText} = this.props.searchActions
         clearInputText()
     }
@@ -39,12 +35,10 @@ class Search extends Component {
     }
 
     handleClickItem = item =>{
-        console.log('item')
-        console.log(item)
-        const {setInputText,addHistoryKeyword} = this.props.searchActions;
+        const {setInputText,addHistoryKeyword,loadRelatedShops} = this.props.searchActions;
         setInputText(item.keyword||item)
         addHistoryKeyword(item.keyword||item)
-        // 跳转到结果页
+        loadRelatedShops(item.keyword)
         this.props.history.push('/search_result')
     }
     hancleClearHistory=()=>{

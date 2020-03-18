@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import {reqPolularKeywords, reqRelatedKeywords} from '../../utils/index'
+import {reqPolularKeywords, reqRelatedKeywords,reqRelatedShops} from '../../utils/index'
 
 const initialState ={
     inputText:"",
@@ -8,7 +8,8 @@ const initialState ={
         ids:[]
     },
     relatedKeywords:{},
-    historyKeywords:[]
+    historyKeywords:[],
+    searchShopsByKeyword:{}
 }
 
 export const types = {
@@ -20,12 +21,13 @@ export const types = {
     CLEAR_INPUT_TEXT:'SEARCH/CLEAR_INPUT_TEXT',
     ADD_HISTORY_KEYWORDS:'SEARCH/ADD_HISTORY_KEYWORDS',
     CLEAR_HISTORY_KEYWORDS:'SEARCH/CLEAR_HISTORY_KEYWORDS',
+    FETCH_SHOPS_REQUEST:'SEARCH/FETCH_SHOPS_REQUEST',
+    FETCH_SHOPS_SUCCESS:'SEARCH/FETCH_SHOPS_SUCCESS',
 }
 
 // action creator
 export const actions ={
     loadPopularKeywords:()=>{
-        console.log('---------loadPopularKeywords-------------')
         return async (dispatch,getState)=>{
             const {ids} = getState().search.popularKeywords;
             console.log(ids)
@@ -34,24 +36,31 @@ export const actions ={
             }
             dispatch(fetchPopularKeywordsRequest());
             const res = await reqPolularKeywords();
-            // console.log(res.data)
             dispatch(fetchPopularKeywordsSuccess(res.data))
 
         }
     },
     loadRelatedKeywords:(text)=>{
         return async (dispatch,getState)=>{
-            console.log('---------loadRelatedKeywords-----------')
             const {relatedKeywords} = getState().search;
-            console.log(relatedKeywords)
             // if(relatedKeywords){
             //     return null
             // }
             dispatch(fetchRelatedKeywordsRequest());
             const res = await reqRelatedKeywords(text);
-            console.log('返回值')
-            console.log(text)
             dispatch(fetchRelatedKeywordsSuccess(res.data,text))
+        }
+    },
+    loadRelatedShops:(keyword)=>{
+        return async (dispatch,getState)=>{
+            const {searchShopsByKeyword} = getState()
+            // if(searchShopsByKeyword[keyword]){
+            //     return null
+            // }
+            dispatch(fetchRelatedShopsRequest())
+            const res = await reqRelatedShops(keyword)
+            console.log(res.data)
+            dispatch(fetchRelatedShopsSuccess(res.data,keyword))
         }
     },
     setInputText:(value)=>({
@@ -88,6 +97,15 @@ const fetchRelatedKeywordsSuccess = (value,text) =>({
     value,
     text
 })
+const fetchRelatedShopsRequest = () =>({
+    type:types.FETCH_SHOPS_REQUEST
+})
+
+const fetchRelatedShopsSuccess = (value,keyword) =>({
+    type:types.FETCH_SHOPS_SUCCESS,
+    value,
+    keyword
+})
 
 // reducer
 const popularKeywords = (state=initialState.popularKeywords,action) =>{
@@ -112,8 +130,6 @@ const relatedKeywords = (state=initialState.relatedKeywords,action)=>{
     switch(action.type){
         case types.FETCH_RELATED_KEYWORDS_REQUEST:
         case types.FETCH_RELATED_KEYWORDS_SUCCESS:
-            console.log('initialState.relatedKeywords')
-            console.log(state)
             return {
                 ...state,
                 [action.text]:relatedKeywordsByText(state[action.text], action)
@@ -122,6 +138,7 @@ const relatedKeywords = (state=initialState.relatedKeywords,action)=>{
             return state
     }
 }
+
 const relatedKeywordsByText = (state={isFetching:false,ids:[]},action)=>{
     switch(action.type){
         case types.FETCH_RELATED_KEYWORDS_REQUEST:
@@ -140,12 +157,27 @@ const relatedKeywordsByText = (state={isFetching:false,ids:[]},action)=>{
     }
 }
 
+const searchShopsByKeyword = (state=initialState.searchShopsByKeyword,action)=>{
+    switch(action.type){
+        case types.FETCH_SHOPS_REQUEST:
+        case types.FETCH_SHOPS_SUCCESS:
+            return {
+                ...state,
+                [action.keyword]:action.value
+            }
+        default:
+            return state
+    }
+}
+
+
+
+
 const inputText = (state=initialState.inputText,action) =>{
     switch(action.type){
         case types.SET_INPUT_TEXT:
             return action.value
         case types.CLEAR_INPUT_TEXT:
-            console.log("返回空")
             return ""
         default:
             return state
@@ -155,8 +187,6 @@ const inputText = (state=initialState.inputText,action) =>{
 const historyKeywords = (state=initialState.historyKeywords,action) =>{
     switch(action.type){
         case types.ADD_HISTORY_KEYWORDS:
-            console.log('----------historyKeywords-----------')
-            console.log(action.value)
             const data = state.filter(item=>item!==action.value)
             return [action.value,...data]
         case types.CLEAR_HISTORY_KEYWORDS:
@@ -169,16 +199,15 @@ const reducer = combineReducers({
     popularKeywords,
     relatedKeywords,
     inputText,
-    historyKeywords
+    historyKeywords,
+    searchShopsByKeyword
 })
 
 export default reducer;
+
 // selector
 export const getPopularKeywords = (state) =>{
     return state.search.popularKeywords.ids
-    // .map(id=>{
-    //     return getKeywordById(state,id)
-    // })
 }
 
 export const getRelatedKeywords = (state) =>{
@@ -191,9 +220,6 @@ export const getRelatedKeywords = (state) =>{
         return []
     } 
     return relatedKeywords.ids
-    // .map(id=>{
-    //     return getKeywordById(state,id)
-    // })
 }
 
 export const getInputText = (state) =>{
@@ -202,7 +228,21 @@ export const getInputText = (state) =>{
 
 export const getHistoryKeywords = (state) =>{
     return state.search.historyKeywords
-    // .map(id=>{
-    //     return getKeywordById(state,id)
-    // })
+}
+
+export const getSearchShops=state=>{
+    const keyword=state.search.historyKeywords[0]
+    if(!keyword){
+        return []
+    };
+    const shops = state.search.searchShopsByKeyword[keyword]
+    return shops
+}
+
+export const getCurrentKeyword = state =>{
+    const keyword=state.search.historyKeywords[0];
+    if(!keyword){
+        return ""
+    }
+    return keyword
 }
