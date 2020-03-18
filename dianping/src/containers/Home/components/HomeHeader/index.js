@@ -7,8 +7,8 @@ class HomeHeader extends Component {
     return (
       <div className="homeHeader">
         <header className="homeHeader__wrapper">
-          <a className="homeHeader__city">Melbourne</a>
-          <Link to='/search'className="homeHeader__search">Input store、location</Link>
+          <a className="homeHeader__city">Sydney</a>
+          <Link to='/search'className="homeHeader__search">Search</Link>
           <Link to='/user' className="homeHeader__self">
             <div className="homeHeader__portrait"/>
           </Link>

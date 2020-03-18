@@ -88,7 +88,7 @@
   }
   
   .discount__itemCurrentPrice::before {
-    content: '\A5';
+    content: '￥';
     font-size: 14px;
   }
   
@@ -99,9 +99,9 @@
   }
   
   .discount__itemOldPrice::before {
-    content: '\A5';
+    content: '￥';
     font-size: 14px;
   }
   
   
-  
+

@@ -11,7 +11,7 @@ import {actions,getLikes,getDiscounts,getPageCountOfLikes} from '../../redux/mod
 
 class Home extends Component{
     componentDidMount(){
-        console.log('在componentDidMount初始化')
+        // console.log('在componentDidMount初始化')
         this.props.homeActions.loadDiscounts();
         this.props.homeActions.loadLikes();
     }

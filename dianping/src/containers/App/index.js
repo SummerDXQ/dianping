@@ -8,6 +8,9 @@ import {BrowserRouter as Router, Route,Switch} from 'react-router-dom'
 import ProductDetail from '../ProductDetail/index'
 import Search from "../Search";
 import SearchResult from '../SearchResult'
+import Login from '../Login/index'
+import PrivateRoute from '../PrivateRouter'
+import User from '../User'
  
 class App extends Component{ 
     render(){
@@ -21,6 +24,8 @@ class App extends Component{
                         <Route path="/search" component={Search} />
                         <Route path="/detail/:id" component={ProductDetail}/>
                         <Route path="/search_result" component={SearchResult}/>
+                        <Route path="/login" component={Login}/>
+                        <PrivateRoute path="/user" component={User}/>
                     </Switch>
                 </Router>
                 {error? <ErrorToast msg={error} clearError={appActions.clearError}/>:null}

@@ -29,6 +29,9 @@ export const actions={
     loadLikes:()=>{
         initialState.likes.pageCount++;
         var pageNo = initialState.likes.pageCount
+        // if(pageNo>=3){
+        //     return null
+        // }
         return async (dispatch,getState)=>{
             dispatch(fetchLikesRequest());
             const res = await reqLikes(pageNo)

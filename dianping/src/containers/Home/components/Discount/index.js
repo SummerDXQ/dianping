@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 class Discount extends Component {
   render() {
     const {data} = this.props;
-    // console.log('-----------discount组件--------------')
-    // console.log(data)
     return (
       <div className="discount">
         <a className="discount__header">
