@@ -106,7 +106,7 @@ const fetchRelatedShopsSuccess = (value,keyword) =>({
     value,
     keyword
 })
-
+ 
 // reducer
 const popularKeywords = (state=initialState.popularKeywords,action) =>{
     switch(action.type){
@@ -170,9 +170,6 @@ const searchShopsByKeyword = (state=initialState.searchShopsByKeyword,action)=>{
     }
 }
 
-
-
-
 const inputText = (state=initialState.inputText,action) =>{
     switch(action.type){
         case types.SET_INPUT_TEXT:
@@ -195,6 +192,7 @@ const historyKeywords = (state=initialState.historyKeywords,action) =>{
             return state
     }
 }
+
 const reducer = combineReducers({
     popularKeywords,
     relatedKeywords,

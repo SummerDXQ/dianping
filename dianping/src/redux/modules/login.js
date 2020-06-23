@@ -54,7 +54,6 @@ export const actions = {
     })
 }
 
-// 
 const loginFailure = error =>({
     type:types.LOGIN_FAILURE,
     error
